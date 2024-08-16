@@ -9,7 +9,7 @@ _Example:_
 - **Node Type**: `FunctionDeclaration` represents a function declaration in the AST.
 - **Node Creation Function**: `functionDeclaration(id, params, body)` generates a `FunctionDeclaration` node.
 
-## 1. General Structure
+### 1. General Structure
 
 | **Node Type**                | **Description**                                                                                                                                                                                                                    |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -21,9 +21,9 @@ _Example:_
 | **VariableDeclaration**  | Variable declaration (`const`, `let`, `var`). <br> **Code**: `const x = 10;` <br> **AST**: `{ type: 'VariableDeclaration', kind: 'const', declarations: [VariableDeclarator(Identifier('x'), NumericLiteral(10))] }` |
 | **VariableDeclarator**   | A single variable declarator. <br> **Code**: `const x = 10;` <br> **AST**: `{ type: 'VariableDeclarator', id: Identifier('x'), init: NumericLiteral(10) }`                                                           |
 
----
 
-## **2. Imports**
+
+### 2. Imports
 
 | **Node Type**                | **Description**                                                                                                                                                                                                                    |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -32,9 +32,9 @@ _Example:_
 | **ImportDefaultSpecifier**   | Default import (`import x`). <br> **Code**: `import x from 'my-module';` <br> **AST**: `{ type: 'ImportDefaultSpecifier', local: Identifier('x') }`                                                                                |
 | **ImportNamespaceSpecifier** | Namespace import (`import * as x`). <br> **Code**: `import * as x from 'my-module';` <br> **AST**: `{ type: 'ImportNamespaceSpecifier', local: Identifier('x') }`                                                                  |
 
----
 
-## **3. Exports**
+
+### 3. Exports
 
 | **Node Type**                | **Description**                                                                                                                                                                                                              |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -45,7 +45,7 @@ _Example:_
 
 ---
 
-## **4. Functions**
+### 4. Functions
 
 | **Node Type**               | **Description**                                                                                                                                                                                                                        |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -55,23 +55,21 @@ _Example:_
 | **ReturnStatement**         | Return statement. <br> **Code**: `return x;` <br> **AST**: `{ type: 'ReturnStatement', argument: Identifier('x') }`                                                                                                                    |
 | **CallExpression**          | Function call expression. <br> **Code**: `myFunc(5);` <br> **AST**: `{ type: 'CallExpression', callee: Identifier('myFunc'), arguments: [NumericLiteral(5)] }`                                                                         |
 
----
 
-## **5. Statements**
 
-| **Node Type**           | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+### 5. Statements
+
+| **Node Type**    | **Description**   |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **IfStatement**         | `if` statement. <br> **Code**: `if (x > 10) { log('greater'); } else { log('less or equal'); }` <br> **AST**: `{ type: 'IfStatement', test: BinaryExpression('>', Identifier('x'), NumericLiteral(10)), consequent: BlockStatement([ExpressionStatement(CallExpression(Identifier('log'), [StringLiteral('greater')]))]), alternate: BlockStatement([ExpressionStatement(CallExpression(Identifier('log'), [StringLiteral('less or equal')]))]) }`                                |
 | **ForStatement**        | `for` loop. <br> **Code**: `for (let i = 0; i < 10; i++) { console.log(i); }` <br> **AST**: `{ type: 'ForStatement', init: VariableDeclaration('let', [VariableDeclarator(Identifier('i'), NumericLiteral(0))]), test: BinaryExpression('<', Identifier('i'), NumericLiteral(10)), update: UpdateExpression('++', Identifier('i')), body: BlockStatement([ExpressionStatement(CallExpression(MemberExpression(Identifier('console'), Identifier('log')), [Identifier('i')]))]) }` |
 | **WhileStatement**      | `while` loop. <br> **Code**: `while (x > 0) { x--; }` <br> **AST**: `{ type: 'WhileStatement', test: BinaryExpression('>', Identifier('x'), NumericLiteral(0)), body: BlockStatement([ExpressionStatement(UpdateExpression('--', Identifier('x')))]) }`                                                                                                                                                                                                                           |
 | **BlockStatement**      | Block of statements (`{ ... }`). <br> **Code**: `{ log('test'); }` <br> **AST**: `{ type: 'BlockStatement', body: [ExpressionStatement(CallExpression(Identifier('log'), [StringLiteral('test')]))] }`                                                                                                                                                                                                                                                                            |
-| **ExpressionStatement** | Wrap                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **ExpressionStatement** | Wraps an expression as a statement. <br> **Code**: `log('test');` <br> **AST**: `{ type: 'ExpressionStatement', expression: CallExpression(Identifier('log'), [StringLiteral('test')]) }` |
 
-s an expression as a statement. <br> **Code**: `log('test');` <br> **AST**: `{ type: 'ExpressionStatement', expression: CallExpression(Identifier('log'), [StringLiteral('test')]) }` |
 
----
 
-## **6. Literals**
+### 6. Literals
 
 | **Node Type**      | **Description**                                                                                                  |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------- |
@@ -80,4 +78,4 @@ s an expression as a statement. <br> **Code**: `log('test');` <br> **AST**: `{ t
 | **BooleanLiteral** | Boolean literal (`true`/`false`). <br> **Code**: `true;` <br> **AST**: `{ type: 'BooleanLiteral', value: true }` |
 | **NullLiteral**    | Null literal. <br> **Code**: `null;` <br> **AST**: `{ type: 'NullLiteral' }`                                     |
 
----
+
